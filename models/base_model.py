@@ -11,14 +11,14 @@ class BaseModel:
         """Initializes the objects"""
 
         if kwargs:
-            for key, value in kwargs.items():
-                if key or value is "__class__":
-                    pass
-
-                if key is "created_at" or key is "updated_at":
-                    datetime_format = "%Y-%m-%dT%H:%M:%S.%f"
-                    value = datetime.datetime.strptime(value, datetime_format)
-
+            for key_inside, value_inside in kwargs.items():
+                if key_inside != "__class__":
+                    setattr(self, key_inside, value_inside)
+            format = "%Y-%m-%dT%H:%M:%S.%f"
+            value = self.created_at
+            self.created_at = datetime.datetime.strptime(value, format)
+            value = self.updated_at
+            self.updated_at = datetime.datetime.strptime(value, format)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
