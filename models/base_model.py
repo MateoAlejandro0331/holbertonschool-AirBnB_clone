@@ -1,18 +1,28 @@
 #!/usr/bin/python3
 """Base class"""
 
-from hashlib import new
 import uuid
 import datetime
 
 
 class BaseModel:
     """Constructor method"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initializes the objects"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+
+        if kwargs:
+            for key, value in kwargs.items():
+                if key or value is "__class__":
+                    pass
+
+                if key is "created_at" or key is "updated_at":
+                    datetime_format = "%Y-%m-%dT%H:%M:%S.%f"
+                    value = datetime.datetime.strptime(value, datetime_format)
+
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
     def __str__(self):
         """Returns a string representation"""
