@@ -11,7 +11,6 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-
     def all(self):
         """Returns the dictionary '__objects'"""
         return FileStorage.__objects
@@ -25,13 +24,13 @@ class FileStorage:
         """Serializes '__objects' to the JSON file '(path: __file_path)'"""
 
         with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
-            FileStorage.__objects = json.dumps(FileStorage.__objects, sort_keys=True, default=str)
-            file.write(FileStorage.__objects)
+            Fs_Ob = FileStorage.__objects
+            Fs_Ob = json.dumps(Fs_Ob, sort_keys=True, default=str)
+            file.write(Fs_Ob)
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
 
         if exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
-                string = file.read()
-                FileStorage.__objects = json.loads(string)
+                FileStorage.__objects = json.loads(file.read())

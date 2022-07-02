@@ -5,6 +5,7 @@ import uuid
 import datetime
 from models import storage
 
+
 class BaseModel:
     """Constructor method"""
     def __init__(self, *args, **kwargs):
@@ -29,7 +30,7 @@ class BaseModel:
 
     def __str__(self):
         """Returns a string representation"""
-        return f"[{__class__.__name__}] ({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Update the current date and time"""
