@@ -2,6 +2,7 @@
 """Program that contains the entry point of the command interpreter"""
 
 from models.base_model import BaseModel
+from models import storage
 import models
 import cmd
 
@@ -43,6 +44,37 @@ class HBNBCommand(cmd.Cmd):
 
         newobject.save()
         print(newobject.id)
+
+    def do_show(self, arg):
+        """Prints the string representation of an instance"""
+
+        
+        arg = arg.split()
+
+        if len(arg) == 0:
+            print("** class name missing **")
+            return
+
+        elif arg[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+            return
+
+        elif len(arg) == 1:
+            print("** instance id missing **")
+            return
+
+        else:
+            bool = False 
+            compare = f"{arg[0]}.{arg[1]}"
+            all_objs = storage.all()
+            for key in all_objs.keys():
+                if compare == key:
+                    bool = True
+                    print(all_objs[key])
+                    break
+
+            if bool == False:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
