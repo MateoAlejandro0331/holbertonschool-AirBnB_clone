@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """Program that contains the entry point of the command interpreter"""
 
-
-from curses import keyname
 from models.base_model import BaseModel
 import models
 import cmd
@@ -11,7 +9,7 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
-    classes = {"BaseModel": BaseModel()}
+    classes = {"BaseModel": BaseModel}
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -36,18 +34,15 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        if arg[0] in HBNBCommand.classes.keys():
-            newobject = HBNBCommand.classes[arg[0]]
-            print(newobject.id)
-            newobject.save()
+        elif arg[0] in HBNBCommand.classes:
+            newobject = HBNBCommand.classes[arg[0]]()
+
         else:
             print("** class doesn't exist **")
-        """for key, value in HBNBCommand.classes.items():
-            if arg[0] == key:
-                newobject = value
-                print(newobject.id)
-                newobject.save()"""
-        return
+            return
+
+        newobject.save()
+        print(newobject.id)
 
 
 if __name__ == '__main__':
