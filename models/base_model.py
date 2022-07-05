@@ -8,9 +8,12 @@ from datetime import datetime
 
 
 class BaseModel:
-    """Base class constructor method"""
+    """Base class
+    constructor method"""
+
     def __init__(self, *args, **kwargs):
-        """Base class initializes the objects"""
+        """Base class initializes
+        the objects"""
 
         if kwargs:
             for key_inside, value_inside in kwargs.items():
@@ -31,16 +34,22 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
-        """Method that returns a string representation"""
+        """Method that returns a
+        string representation"""
+
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
-        """Method that update the current date and time"""
+        """Method that update the current
+        date and time"""
+
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """Method that returns a dictionary representation"""
+        """Method that returns a
+        dictionary representation"""
+
         self.__dict__["__class__"] = self.__class__.__name__
         self.__dict__["created_at"] = self.created_at.isoformat()
         self.__dict__["updated_at"] = self.updated_at.isoformat()
