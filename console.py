@@ -64,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         else:
-            bool = False 
+            bool = False
             compare = f"{arg[0]}.{arg[1]}"
             all_objs = storage.all()
             for key in all_objs.keys():
@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                     print(all_objs[key])
                     break
 
-            if bool == False:
+            if bool is False:
                 print("** no instance found **")
 
     def do_destroy(self, arg):
@@ -103,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                     break
 
-            if bool == False:
+            if bool is False:
                 print("** no instance found **")
 
     def do_all(self, arg):
