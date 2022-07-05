@@ -115,14 +115,14 @@ class HBNBCommand(cmd.Cmd):
 
         if len(arg) == 0:
             for key, value in all_objs.items():
-                list.append(str(value))
+                list.append(value.__str__())
             print(list)
 
         elif len(arg) == 1:
             if arg[0] in HBNBCommand.classes:
                 for key, value in all_objs.items():
                     if arg[0] in key:
-                        list.append(str(value))
+                        list.append(value.__str__())
                 print(list)
             else:
                 print("** class doesn't exist **")
@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
 
-        arg = arg.split()
+        """arg = arg.split()
 
         if len(arg) == 0:
             print("** class name missing **")
@@ -153,6 +153,45 @@ class HBNBCommand(cmd.Cmd):
 
         elif len(arg) == 3:
             print("** value missing **")
+
+        elif len(arg) > 3:
+            setattr(storage.all()[compare], arg[2], arg[3])
+            storage.all()[compare].save()"""
+
+        arg = arg.split()
+
+        if len(arg) == 0:
+            print("** class name missing **")
+            return
+
+        elif arg[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+            return
+
+        elif len(arg) == 1:
+            print("** instance id missing **")
+            return
+
+        compare = f"{arg[0]}.{arg[1]}"
+        if compare in storage.all().keys():
+            if len(arg) == 2:
+                print("** attribute name missing **")
+                return
+
+            if len(arg) == 3:
+                print("** value missing **")
+                return
+
+            for key, value in storage.all().items():
+                if key == compare:
+                    value.__dict__.update()
+
+            new_instance = storage.all()[compare]
+            setattr(new_instance, arg[2], arg[3])
+            storage.save()
+        else:
+            print("** no instance found **")
+            return
 
 
 if __name__ == '__main__':
