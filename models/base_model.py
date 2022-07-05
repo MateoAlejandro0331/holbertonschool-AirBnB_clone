@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """Main 'BaseModel' class that defines all common
 attributes/methods for other classes"""
 
