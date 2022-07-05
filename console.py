@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """Program that contains the entry point of the command interpreter"""
 
-from models.base_model import BaseModel
-from models import storage
 import models
 import cmd
+from models.base_model import BaseModel
+from models.user import User
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
