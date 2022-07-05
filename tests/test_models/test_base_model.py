@@ -18,6 +18,14 @@ class TestBaseModel(unittest.TestCase):
         my_BaseModel = BaseModel()
         self.assertIsInstance(my_BaseModel, BaseModel)
 
+    def test_id(self):
+        """
+        Check if there is a different Id
+        """
+        instance_0 = BaseModel()
+        instance_1 = BaseModel()
+        self.assertNotEqual(instance_0, instance_1)
+
 
 if __name__ == '__main__':
     unittest.main()
