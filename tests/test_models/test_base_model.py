@@ -4,12 +4,19 @@ Instantiating BaseModel.
 """
 import unittest
 from models.base_model import BaseModel
-import pycodestyle
 
 
 class TestBaseModel(unittest.TestCase):
-    """TEO es el mejor"""
-    pass
+    """
+    Testing our function
+    """
+
+    def is_instance(self):
+        """
+        Create instance BaseModel
+        """
+        my_BaseModel = BaseModel()
+        self.assertIsInstance(my_BaseModel, BaseModel)
 
 
 if __name__ == '__main__':
