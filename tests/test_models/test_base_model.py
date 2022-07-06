@@ -42,39 +42,50 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         """Testing the '__str__' method"""
 
-        str = f"[{self.Model.__class__.__name__}] \
-                    ({self.Model.id}) {self.Model.__dict__}"
-        str2 = self.Model.__str__()
+        Model = BaseModel()
+
+        str = f"[{Model.__class__.__name__}] ({Model.id}) {Model.__dict__}"
+        str2 = Model.__str__()
         self.assertEqual(str, str2)
 
     def test_save(self):
         """Testing the 'save' method"""
 
-        self.Model.save()
+        Model = BaseModel()
+
+        Model.save()
         self.assertTrue(exists("file.json"))
         with open("file.json") as file:
             to_load = json.load(file)
-        self.assertTrue(self.Model.to_dict() in to_load.values())
+        self.assertTrue(Model.to_dict() in to_load.values())
 
     def test_to_dict(self):
         """Testing the 'to_dict' method"""
 
-        dict = self.Model.to_dict()
-        self.assertEqual(self.Model.id, dict["id"])
+        Model = BaseModel()
+
+        dict = Model.to_dict()
+        self.assertEqual(Model.id, dict["id"])
 
     def test_attributes(self):
         """Testing the attributes of 'BaseModel'"""
-        self.assertIsInstance(self.Model, BaseModel)
-        self.assertTrue(hasattr(self.Model, "created_at"))
-        self.assertTrue(hasattr(self.Model, "updated_at"))
-        self.assertTrue(hasattr(self.Model, "id"))
+
+        Model = BaseModel()
+
+        self.assertIsInstance(Model, BaseModel)
+        self.assertTrue(hasattr(Model, "created_at"))
+        self.assertTrue(hasattr(Model, "updated_at"))
+        self.assertTrue(hasattr(Model, "id"))
 
     def test_attributes_dictionary(self):
         """Testing the attributes of 'BaseModel'"""
-        
-        self.Model.name = "Matein Pingüin"
-        self.assertTrue(hasattr(self.Model, "name"))
-        self.assertEqual(self.Model.to_dict()["name"], "Matein Pingüin")
+
+        Model = BaseModel()
+
+        Model.name = "Matein Pingüin"
+        self.assertTrue(hasattr(Model, "name"))
+        self.assertEqual(Model.to_dict()["name"], "Matein Pingüin")
+
 
 if __name__ == '__main__':
     unittest.main()
