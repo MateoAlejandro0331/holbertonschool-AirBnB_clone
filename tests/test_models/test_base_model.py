@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 """Tests for 'BaseModel' class with unittest module"""
 
-import json
 import unittest
 from models.base_model import BaseModel
-from os.path import exists
 
 
 class TestBaseModel(unittest.TestCase):
