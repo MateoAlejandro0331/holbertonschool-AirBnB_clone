@@ -23,6 +23,14 @@ class TestBaseModel(unittest.TestCase):
         instance_1 = BaseModel()
         self.assertNotEqual(instance_0, instance_1)
 
+    def test_str(self):
+        """Testing the '__str__' method"""
+
+        str = f"[{self.Model.__class__.__name__}] \
+                    ({self.Model.id}) {self.Model.__dict__}"
+        str2 = self.Model.__str__()
+        self.assertEqual(str, str2)
+
 
 if __name__ == '__main__':
     unittest.main()
