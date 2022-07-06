@@ -36,7 +36,7 @@ class FileStorage:
         for key_inside, value_inside in FileStorage.__objects.items():
             dict_to_serialize[key_inside] = value_inside.to_dict()
         with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
-                json.dump(dict_to_serialize, file)
+            json.dump(dict_to_serialize, file)
 
         """with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
             Fs_Ob = FileStorage.__objects
@@ -49,4 +49,5 @@ class FileStorage:
         if exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
                 for key, value in json.load(file).items():
-                    FileStorage.__objects[key] = FileStorage.classes[value["__class__"]](**value)
+                    Obj = FileStorage.__objects
+                    Obj[key] = FileStorage.classes[value["__class__"]](**value)
