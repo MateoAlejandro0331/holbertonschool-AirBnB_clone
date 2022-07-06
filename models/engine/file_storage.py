@@ -35,19 +35,18 @@ class FileStorage:
 
         for key_inside, value_inside in FileStorage.__objects.items():
             dict_to_serialize[key_inside] = value_inside.to_dict()
-        with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
+        with open(FileStorage.__file_path, "w") as file:
             json.dump(dict_to_serialize, file)
 
         """with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
-            Fs_Ob = FileStorage.__objects
-            Fs_Ob = json.dumps(Fs_Ob, sort_keys=True, default=str)
-            file.write(Fs_Ob)"""
+            Obj = json.dumps(FileStorage.__objects, sort_keys=True, default=str)
+            file.write(Obj)"""
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
 
         if exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
+            with open(FileStorage.__file_path, "r") as file:
                 for key, value in json.load(file).items():
-                    Obj = FileStorage.__objects
-                    Obj[key] = FileStorage.classes[value["__class__"]](**value)
+                    value = eval(value["__class__"])(**value)
+                    FileStorage.__objects[key] = value
