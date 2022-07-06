@@ -31,12 +31,6 @@ class TestBaseModel(unittest.TestCase):
         str2 = self.Model.__str__()
         self.assertEqual(str, str2)
 
-    def test_to_dict(self):
-        """Testing the 'to_dict' method"""
-
-        dict = self.Model.to_dict()
-        self.assertEqual(self.Model.id, dict["id"])
-
 
 if __name__ == '__main__':
     unittest.main()
