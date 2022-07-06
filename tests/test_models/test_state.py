@@ -25,9 +25,10 @@ class TestUser(unittest.TestCase):
     def test_str(self):
         """Testing the '__str__' method"""
 
-        str = f"[{self.Model.__class__.__name__}] \
-                    ({self.Model.id}) {self.Model.__dict__}"
-        str2 = self.Model.__str__()
+        Model = State()
+
+        str = f"[{Model.__class__.__name__}] ({Model.id}) {Model.__dict__}"
+        str2 = Model.__str__()
         self.assertEqual(str, str2)
 
 
