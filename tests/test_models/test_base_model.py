@@ -62,6 +62,19 @@ class TestBaseModel(unittest.TestCase):
         dict = self.Model.to_dict()
         self.assertEqual(self.Model.id, dict["id"])
 
+    def test_attributes(self):
+        """Testing the attributes of 'BaseModel'"""
+        self.assertIsInstance(self.Model, BaseModel)
+        self.assertTrue(hasattr(self.Model, "created_at"))
+        self.assertTrue(hasattr(self.Model, "updated_at"))
+        self.assertTrue(hasattr(self.Model, "id"))
+
+    def test_attributes_dictionary(self):
+        """Testing the attributes of 'BaseModel'"""
+        
+        self.Model.name = "Matein Pingüin"
+        self.assertTrue(hasattr(self.Model, "name"))
+        self.assertEqual(self.Model.to_dict()["name"], "Matein Pingüin")
 
 if __name__ == '__main__':
     unittest.main()
