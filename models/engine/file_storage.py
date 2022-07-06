@@ -39,7 +39,8 @@ class FileStorage:
             json.dump(dict_to_serialize, file)
 
         """with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
-            Obj = json.dumps(FileStorage.__objects, sort_keys=True, default=str)
+            Obj = json.dumps(FileStorage.__objects,
+            sort_keys=True, default=str)
             file.write(Obj)"""
 
     def reload(self):
