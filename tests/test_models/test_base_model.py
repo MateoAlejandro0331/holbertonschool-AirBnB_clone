@@ -31,15 +31,6 @@ class TestBaseModel(unittest.TestCase):
         str2 = self.Model.__str__()
         self.assertEqual(str, str2)
 
-    def test_save(self):
-        """Testing the 'save' method"""
-
-        self.Model.save()
-        self.assertTrue(exists("file.json"))
-        with open("file.json") as file:
-            to_load = json.load(file)
-        self.assertTrue(self.Model.to_dict() in to_load.values())
-
     def test_to_dict(self):
         """Testing the 'to_dict' method"""
 
