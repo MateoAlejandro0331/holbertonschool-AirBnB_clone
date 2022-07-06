@@ -3,11 +3,18 @@
 with unittest module"""
 
 import unittest
+import models
 from models.review import Review
 
 
 class TestUser(unittest.TestCase):
     """Testing our methods of 'BaseModel' for 'Review'"""
+
+    def test_doc_module(self):
+        """Testing all class documentation"""
+
+        self.assertTrue(models.review.__doc__)
+        self.assertTrue(Review.__doc__)
 
     def test_is_instance(self):
         """Creating an instance of 'Review'"""

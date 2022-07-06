@@ -3,6 +3,7 @@
 with unittest module"""
 
 import unittest
+import models
 from models.city import City
 
 
@@ -14,6 +15,12 @@ class TestUser(unittest.TestCase):
 
         Model = City()
         self.assertIsInstance(Model, City)
+
+    def test_doc_module(self):
+        """Testing all class documentation"""
+
+        self.assertTrue(models.city.__doc__)
+        self.assertTrue(City.__doc__)
 
     def test_id(self):
         """Testing if there is a different id (uuid4)"""

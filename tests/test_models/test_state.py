@@ -3,11 +3,18 @@
 with unittest module"""
 
 import unittest
+import models
 from models.state import State
 
 
 class TestUser(unittest.TestCase):
     """Testing our methods of 'BaseModel' for 'State'"""
+
+    def test_doc_module(self):
+        """Testing all class documentation"""
+
+        self.assertTrue(models.state.__doc__)
+        self.assertTrue(State.__doc__)
 
     def test_is_instance(self):
         """Creating an instance of 'State'"""
