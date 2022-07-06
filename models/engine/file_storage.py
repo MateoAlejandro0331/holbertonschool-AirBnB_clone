@@ -9,6 +9,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -16,6 +17,7 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
+    classes = {"BaseModel": BaseModel}
 
     def all(self):
         """Returns the dictionary '__objects'"""
@@ -29,14 +31,22 @@ class FileStorage:
     def save(self):
         """Serializes '__objects' to the JSON file '(path: __file_path)'"""
 
+        dict_to_serialize = {}
+
+        for key_inside, value_inside in FileStorage.__objects.items():
+            dict_to_serialize[key_inside] = value_inside.to_dict()
         with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
+                json.dump(dict_to_serialize, file)
+
+        """with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
             Fs_Ob = FileStorage.__objects
             Fs_Ob = json.dumps(Fs_Ob, sort_keys=True, default=str)
-            file.write(Fs_Ob)
+            file.write(Fs_Ob)"""
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
 
         if exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
-                FileStorage.__objects = json.loads(file.read())
+                for key, value in json.load(file).items():
+                    FileStorage.__objects[key] = FileStorage.classes[value["__class__"]](**value)
