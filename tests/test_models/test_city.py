@@ -1,25 +1,25 @@
 #!/usr/bin/python3
-"""Tests for 'State' class that inherits from 'BaseModel'
+"""Tests for 'City' class that inherits from 'BaseModel'
 with unittest module"""
 
 import unittest
-from models.state import State
+from models.city import City
 
 
 class TestUser(unittest.TestCase):
-    """Testing our methods of 'BaseModel' for 'State'"""
+    """Testing our methods of 'BaseModel' for 'City'"""
 
     def test_is_instance(self):
-        """Creating an instance of 'State'"""
+        """Creating an instance of 'City'"""
 
-        Model = State()
-        self.assertIsInstance(Model, State)
+        Model = City()
+        self.assertIsInstance(Model, City)
 
     def test_id(self):
         """Testing if there is a different id (uuid4)"""
 
-        instance_0 = State()
-        instance_1 = State()
+        instance_0 = City()
+        instance_1 = City()
         self.assertNotEqual(instance_0, instance_1)
 
     def test_str(self):
