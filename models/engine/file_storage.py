@@ -18,10 +18,10 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    clss_0 = {"BaseModel": BaseModel, "Amenity": Amenity, "User": User}
+    classes = {"BaseModel": BaseModel, "Amenity": Amenity, "User": User}
     clss_1 = {"State": State, "City": City, "Review": Review, "Place": Place}
 
-    classes = clss_0.update(clss_1)
+    classes.update(clss_1)
 
     def all(self):
         """Returns the dictionary '__objects'"""
