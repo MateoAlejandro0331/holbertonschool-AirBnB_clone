@@ -16,7 +16,7 @@ class TestBaseModel(unittest.TestCase):
         """Method called before tests in an individual class are run"""
         Model = BaseModel()
 
-    def test_docs(self):
+    def test_doc_module(self):
         """Testing all class documentation"""
 
         self.assertTrue(models.base_model.__doc__)
@@ -26,13 +26,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(BaseModel.save.__doc__)
         self.assertTrue(BaseModel.to_dict.__doc__)
 
-    def test_is_an_instance(self):
+    def test_is_instance(self):
         """Creating an instance of 'BaseModel'"""
 
         Model = BaseModel()
         self.assertIsInstance(Model, BaseModel)
 
-    def test_different_id(self):
+    def test_id(self):
         """Testing if there is a different id (uuid4)"""
 
         instance_0 = BaseModel()
