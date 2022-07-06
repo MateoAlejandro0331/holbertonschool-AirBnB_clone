@@ -25,7 +25,7 @@ class FileStorage:
 
     def new(self, obj):
         """Sets in '__objects' the obj with key '<obj class name>.id'"""
-        key = f"{obj.__class__.__name__}.{obj.id}"
+        key = f"{type(obj).__name__}.{obj.id}"
         FileStorage.__objects[key] = obj
 
     def save(self):
@@ -49,5 +49,5 @@ class FileStorage:
         if exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r") as file:
                 for key, value in json.load(file).items():
-                    value = eval(value["__class__"])(**value)
-                    FileStorage.__objects[key] = value
+                    Obj = FileStorage.__objects
+                    Obj[key] = FileStorage.classes[value["__class__"]](**value)
