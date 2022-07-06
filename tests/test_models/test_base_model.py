@@ -26,7 +26,8 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         """Testing the '__str__' method"""
 
-        str = f"[{self.Model.__class__.__name__}] ({self.Model.id}) {self.Model.__dict__}"
+        str = f"[{self.Model.__class__.__name__}] \
+                    ({self.Model.id}) {self.Model.__dict__}"
         str2 = self.Model.__str__()
         self.assertEqual(str, str2)
 
@@ -38,7 +39,6 @@ class TestBaseModel(unittest.TestCase):
         with open("file.json") as file:
             to_load = json.load(file)
         self.assertTrue(self.Model.to_dict() in to_load.values())
-
 
     def test_to_dict(self):
         """Testing the 'to_dict' method"""
