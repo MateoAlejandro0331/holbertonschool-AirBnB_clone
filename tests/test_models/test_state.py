@@ -4,6 +4,7 @@ with unittest module"""
 
 import unittest
 import models
+from models.base_model import BaseModel
 from models.state import State
 
 
@@ -37,6 +38,23 @@ class TestUser(unittest.TestCase):
         str = f"[{Model.__class__.__name__}] ({Model.id}) {Model.__dict__}"
         str2 = Model.__str__()
         self.assertEqual(str, str2)
+
+    def test_type_objects_State(self):
+        """Testing the 'State' public attributes"""
+
+        Model = State()
+
+        self.assertIsInstance(Model, State)
+        self.assertIsInstance(Model.name, str)
+
+        self.assertTrue(issubclass(State, BaseModel))
+
+    def test_instances_of_State(self):
+        """Testing the 'State' public attributes"""
+
+        Model = State()
+
+        self.assertTrue(hasattr(Model, "name"))
 
 
 if __name__ == '__main__':

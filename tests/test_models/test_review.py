@@ -4,6 +4,7 @@ with unittest module"""
 
 import unittest
 import models
+from models.base_model import BaseModel
 from models.review import Review
 
 
@@ -37,6 +38,27 @@ class TestUser(unittest.TestCase):
         str = f"[{Model.__class__.__name__}] ({Model.id}) {Model.__dict__}"
         str2 = Model.__str__()
         self.assertEqual(str, str2)
+
+    def test_type_objects_Review(self):
+        """Testing the 'Amenity' public attributes"""
+
+        Model = Review()
+
+        self.assertIsInstance(Model, Review)
+        self.assertIsInstance(Model.place_id, str)
+        self.assertIsInstance(Model.user_id, str)
+        self.assertIsInstance(Model.text, str)
+
+        self.assertTrue(issubclass(Review, BaseModel))
+
+    def test_instances_of_Amenity(self):
+        """Testing the 'Amenity' public attributes"""
+
+        Model = Review()
+
+        self.assertTrue(hasattr(Model, "place_id"))
+        self.assertTrue(hasattr(Model, "user_id"))
+        self.assertTrue(hasattr(Model, "text"))
 
 
 if __name__ == '__main__':

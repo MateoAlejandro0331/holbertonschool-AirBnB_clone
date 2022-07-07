@@ -86,7 +86,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn(key_inside, all_keys)
         self.assertEqual(dict[key_inside], Model)
 
-    def test_type_objects(self):
+    def test_type_objects_FileStorage(self):
         """Testing type of FileStorage attributes (objects)"""
 
         Model = FileStorage()

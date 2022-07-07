@@ -6,6 +6,7 @@ import unittest
 from attr import has
 import models
 import json
+from models.base_model import BaseModel
 from models.user import User
 from os.path import exists
 
@@ -60,7 +61,7 @@ class TestUser(unittest.TestCase):
         dict = Model.to_dict()
         self.assertEqual(Model.id, dict["id"])
 
-    def test_instances_of_user(self):
+    def test_instances_of_User(self):
         """Testing the 'User' public attributes"""
 
         Model = User()
@@ -70,7 +71,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(Model, "first_name"))
         self.assertTrue(hasattr(Model, "last_name"))
 
-    def test_type_objects(self):
+    def test_type_objects_User(self):
         """Testing type of 'User' attributes (objects)"""
 
         Model = User()
@@ -79,6 +80,8 @@ class TestUser(unittest.TestCase):
         self.assertIsInstance(Model.password, str)
         self.assertIsInstance(Model.first_name, str)
         self.assertIsInstance(Model.last_name, str)
+
+        self.assertTrue(issubclass(User, BaseModel))
 
 
 if __name__ == '__main__':
