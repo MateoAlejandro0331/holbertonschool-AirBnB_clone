@@ -69,6 +69,7 @@ class TestFileStorage(unittest.TestCase):
 
         returned_dict = Model.all()
         self.assertIsNotNone(returned_dict)
+        self.assertIs(returned_dict, Model._FileStorage__objects)
         self.assertTrue(type(returned_dict), dict)
 
     def test_new(self):
