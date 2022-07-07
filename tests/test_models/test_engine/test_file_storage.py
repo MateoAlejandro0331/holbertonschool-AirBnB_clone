@@ -9,8 +9,10 @@ from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
 
-class TestBaseModel(unittest.TestCase):
+class TestFileStorage(unittest.TestCase):
     """Testing our functions of 'FileStorage'"""
+
+    __objects = {}
 
     @classmethod
     def setUpClass(cls):
@@ -50,6 +52,24 @@ class TestBaseModel(unittest.TestCase):
         with open("file.json") as file:
             to_load = json.load(file)
         self.assertTrue(Model.to_dict() in to_load.values())
+
+    def test_reload(self):
+        """Testing the 'reload' method"""
+
+        Model = FileStorage()
+
+        Model.save()
+        Model.reload()
+        self.assertIsInstance(TestFileStorage.__objects, dict)
+
+    def test_all(self):
+        """Testing the 'all' method"""
+
+        Model = FileStorage()
+
+        returned_dict = Model.all()
+        self.assertIsNotNone(returned_dict)
+        self.assertTrue(type(returned_dict), dict)
 
 
 if __name__ == '__main__':
