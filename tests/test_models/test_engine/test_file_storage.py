@@ -71,6 +71,19 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(returned_dict)
         self.assertTrue(type(returned_dict), dict)
 
+    def test_new(self):
+        """Testing the 'new' method"""
+
+        Model = BaseModel()
+
+        models.storage.new(Model)
+        dict = models.storage.all()
+
+        key_inside = f"{type(Model).__name__}.{Model.id}"
+        all_keys = dict.keys()
+        self.assertIn(key_inside, all_keys)
+        self.assertEqual(dict[key_inside], Model)
+
 
 if __name__ == '__main__':
     unittest.main()

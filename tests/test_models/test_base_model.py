@@ -82,9 +82,9 @@ class TestBaseModel(unittest.TestCase):
 
         Model = BaseModel()
 
-        Model.name = "Matein Pingüin"
+        Model.name = "Matein Pinguin"
         self.assertTrue(hasattr(Model, "name"))
-        self.assertEqual(Model.to_dict()["name"], "Matein Pingüin")
+        self.assertEqual(Model.to_dict()["name"], "Matein Pinguin")
 
 
 if __name__ == '__main__':
