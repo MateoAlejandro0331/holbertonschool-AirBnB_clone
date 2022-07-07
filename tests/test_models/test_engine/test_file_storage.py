@@ -54,9 +54,14 @@ class TestFileStorage(unittest.TestCase):
     def test_reload(self):
         """Testing the 'reload' method"""
 
-        Model = FileStorage()
+        Model = BaseModel()
+        Model_2 = FileStorage()
 
-        self.assertTrue(hasattr(Model, "reload"), True)
+        Model_2.save()
+        Model_2.reload()
+        key = f"BaseModel.{Model.id}"
+        dict_all = Model_2.all()
+        self.assertFalse(dict_all[key] is Model)
 
     def test_all(self):
         """Testing the 'all' method"""
