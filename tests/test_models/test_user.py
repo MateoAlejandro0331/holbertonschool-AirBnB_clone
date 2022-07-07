@@ -2,6 +2,8 @@
 """Tests for 'User' class with unittest module"""
 
 import unittest
+
+from attr import has
 import models
 import json
 from models.user import User
@@ -57,6 +59,16 @@ class TestUser(unittest.TestCase):
 
         dict = Model.to_dict()
         self.assertEqual(Model.id, dict["id"])
+
+    def test_instances_of_user(self):
+        """Testing the 'User' public attributes"""
+
+        Model = User()
+
+        self.assertTrue(hasattr(Model, "email"))
+        self.assertTrue(hasattr(Model, "password"))
+        self.assertTrue(hasattr(Model, "first_name"))
+        self.assertTrue(hasattr(Model, "last_name"))
 
 
 if __name__ == '__main__':
