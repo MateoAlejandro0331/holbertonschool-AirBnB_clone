@@ -3,7 +3,6 @@
 
 import unittest
 
-from attr import has
 import models
 import json
 from models.base_model import BaseModel
