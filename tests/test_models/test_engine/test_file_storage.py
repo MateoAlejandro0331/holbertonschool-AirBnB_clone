@@ -12,8 +12,6 @@ from models.engine.file_storage import FileStorage
 class TestFileStorage(unittest.TestCase):
     """Testing our functions of 'FileStorage'"""
 
-    __objects = {}
-
     @classmethod
     def setUpClass(cls):
         """Method called before tests in an individual class are run"""
@@ -60,7 +58,10 @@ class TestFileStorage(unittest.TestCase):
 
         Model.save()
         Model.reload()
-        self.assertIsInstance(TestFileStorage.__objects, dict)
+        self.assertIsInstance(Model._FileStorage__objects, dict)
+        self.assertIsInstance(Model._FileStorage__objects
+                              [BaseModel.__class__.__name__ + '.'
+                               + BaseModel.id], BaseModel)
 
     def test_all(self):
         """Testing the 'all' method"""
