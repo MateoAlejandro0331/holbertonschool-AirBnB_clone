@@ -84,6 +84,14 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn(key_inside, all_keys)
         self.assertEqual(dict[key_inside], Model)
 
+    def test_type_objects(self):
+        """Testing type of FileStorage attributes (objects)"""
+
+        Model = FileStorage()
+
+        self.assertIsInstance(Model._FileStorage__file_path, str)
+        self.assertIsInstance(Model._FileStorage__objects, dict)
+
 
 if __name__ == '__main__':
     unittest.main()
