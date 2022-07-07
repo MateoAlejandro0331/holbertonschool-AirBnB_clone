@@ -58,11 +58,6 @@ class TestUser(unittest.TestCase):
         dict = Model.to_dict()
         self.assertEqual(Model.id, dict["id"])
 
-    def create_attributes(self):
-        """Testing 'User' class creating owns attributes"""
-
-        pass
-
 
 if __name__ == '__main__':
     unittest.main()
