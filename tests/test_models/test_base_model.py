@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Tests for 'BaseModel' class with unittest module"""
 
 import unittest
