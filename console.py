@@ -168,6 +168,15 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
 
+    def precmd(self, arg):
+        if "." in arg:
+            args = arg.split(".")
+            clase = args[0]
+            args[1] = args[1].strip("()")
+            command = args[1] + " " + clase
+            return command
+        return arg
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
